@@ -10,7 +10,7 @@ h1 {
     font-weight: normal; 
 }
 p { 
-    margin: 0 0 10px; 
+    margin-bottom: 10px;
 }
 input[type=number] {
     width: 25%;
@@ -34,8 +34,8 @@ input[type=number]:focus {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 75%;
-    max-height: 75%;
+    max-width: 85%;
+    max-height: 85%;
 }
 .add-button {
     background-color: #ffffff;
@@ -71,6 +71,7 @@ input[type=number]:focus {
 }
 #container { 
     max-width: 580px; 
+    width: 90%;
 }
 #error_msg{
     color: #660000;
