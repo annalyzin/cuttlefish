@@ -23,17 +23,21 @@
 
         function addField() {
             var r = document.createElement('div');
-            var y = document.createElement('input');
-            var z = document.createElement('input');
-            y.setAttribute("type", "number");
-            y.setAttribute("placeholder", "Width");
-            z.setAttribute("type", "number");
-            z.setAttribute("placeholder", "Height");
+            var a = document.createElement('input');
+            var b = document.createElement('input');
+            var c = document.createElement('p');
+            a.setAttribute("type", "number");
+            b.setAttribute("type", "number");
+            a.setAttribute("placeholder", "Width");
+            b.setAttribute("placeholder", "Height");
+            c.setAttribute("class", "error_msg");
             increment();
-            y.setAttribute("id", "box_width" + n_box);
-            r.appendChild(y);
-            z.setAttribute("id", "box_height" + n_box);
-            r.appendChild(z);
+            a.setAttribute("id", "box_width" + n_box);
+            b.setAttribute("id", "box_height" + n_box);
+            c.setAttribute("id", "error_msg" + n_box);
+            r.appendChild(a);
+            r.appendChild(b);
+            r.appendChild(c);
             document.getElementById("form-div").appendChild(r);
         }
 
@@ -46,7 +50,7 @@
 
          <ul>
           <li>Input the width of your fabric roll</li>
-          <li>Input the width and height of your rectangles required</li>
+          <li>Input the width and height of your rectangles</li>
           <li>Use either inches or cm, just be consistent</li>
           <li>You may use decimal places in your inputs</li>
         </ul> 
@@ -65,18 +69,15 @@
         <div>
             <p>Rectangles Required:</p>
             <div id="form-div">
-                <input type="number" id="box_width0" min="1" value="16" placeholder="Width"><input type="number" id="box_height0" min="1" value="8" placeholder="Height">
+                <input type="number" id="box_width0" min="1" value="16" placeholder="Width">
+                <input type="number" id="box_height0" min="1" value="8" placeholder="Height">
+                <p class="error_msg" id="error_msg0"></p>
             </div>    
         </div>
         
 
         <div>
             <button class="add-button" onclick="addField()">Add More</button>
-        </div>
-
-        <div>
-            <p id="error_msg">
-            </p>
         </div>
 
         <div id="gen-button-div">
@@ -120,17 +121,17 @@
                 var box_h = parseFloat(document.getElementById('box_height' + i).value);
 
                 // validate inputs
-                var error_message;
-                error_message = document.getElementById("error_msg");
-                error_message.innerHTML = "";
+                var error_message = document.getElementById("error_msg" + i);
+                
                 try { 
                     if(isNaN(box_w) || isNaN(box_h)) throw "Please input numbers.";
-                    if(box_w < 1 || box_h < 1) throw "Minimum value for width/height is 1.";
-                    if(box_w > fabric_width) throw "Maximum value for width cannot exceed fabric width.";
+                    if(box_w < 1 || box_h < 1) throw "Minimum value is 1.";
+                    if(box_w > fabric_width) throw "Width exceeds fabric width.";
 
                     // calulcate area and add to list of valid boxes
                     var box_a = box_w * box_h;
                     boxes.push({w: box_w, h: box_h, a: box_a});
+                    error_message.innerHTML = ``;
                 }
                 catch(err) {
                     error_message.innerHTML = err;
