@@ -13,13 +13,13 @@ Note that rectangles will **not** be rotated to preserve how you'd like the piec
 
 # Demo
 
-Use the Cuttlefish app here: <a href="https://cottonrays.github.io/cuttlefish/">https://cottonrays.github.io/cuttlefish/</a>
+Use the Cuttlefish app here: <a href="https://cottonrays.github.io/cuttlefish" target="_blank">https://cottonrays.github.io/cuttlefish</a>
 
 # Feedback
 
 Do you have suggestions on how I can improve your experience?
 
-Complete this 3-question survey: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
+Complete this 3-question survey: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
 
 # Technical Notes
 
@@ -43,3 +43,12 @@ Cuttlefish features the additional enhancements listed below.
 |_____|_____________|           |_____|_____________|
 
 ```
+
+# Limitations
+
+Cuttlefish attempts to solve a combinatorial NP-hard problem, known as the <a href="https://en.wikipedia.org/wiki/Bin_packing_problem" target="_blank">Bin Packing</a> problem. Since Cuttlefish only uses a heuristic (i.e. approximation), there is a chance that the solution generated is not the most optimal. However, Culttlefish aims to provide you with an initial guide to visualize your fabric utilization, and hopefully inspire you to arrive at a more optimal solution than anything you'd have thought of while panicking over your sewing project deadlines.
+
+Below is a list of known limitations. If you come across any additional ones, feel free to submit a pull request or fill in this form: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>.
+
+- Unlimited fabric height assumed
+- Tendency to fill upper left hand corners first might result in rectangles lining the left side of the fabric
