@@ -1,0 +1,96 @@
+body { 
+    margin: 0; 
+    font: 16px/1.2 "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
+h1 { 
+    font-size: 32px; 
+    font-weight: normal; 
+}
+p { 
+    margin: 0 0 10px; 
+}
+input[type=number] {
+    width: 25%;
+    font-size: 15px;
+    padding: 8px 10px;
+    margin: 2px 2px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #0099cc;
+    border-radius: 5px;
+
+}
+input[type=number]:focus {
+    background-color: #ccf3ff;
+}
+/*input[type=number]:invalid {
+    background-color: #ffcccc;
+    border: 1px solid #660000;
+}*/
+.img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 75%;
+    max-height: 75%;
+}
+.add-button {
+    background-color: #ffffff;
+    border: none;
+    color: #0099cc;
+    padding: 7px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+.gen-button {
+    background-color: #0099cc;
+    border: none;
+    color: white;
+    padding: 7px 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 2px 1px;
+    cursor: pointer;
+}
+
+#info { 
+    text-align: center;
+    color: #0099cc; 
+}
+#info em { 
+    font-style: normal; 
+    color: #555; 
+}
+#container { 
+    max-width: 580px; 
+}
+#error_msg{
+    color: #660000;
+    padding: 7px 7px;
+    margin-bottom: 50px; 
+}
+#feedback { 
+    font-size: 15px;
+    padding: 50px 7px;
+}
+#gen-button-div { 
+    text-align: center; 
+}
+#credits { 
+    text-align: center;
+    font-size: 11px; 
+    padding: 7px 7px;
+    line-height: 1;
+}
+#canvas { 
+    border: 1px solid #ccc; 
+    margin-bottom: 5px; 
+}
