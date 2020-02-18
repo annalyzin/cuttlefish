@@ -59,13 +59,13 @@
 
         <div>
             <label for="fabric_width">Fabric Width:</label>
-            <input type="number" id="fabric_width" min="1" value="54" placeholder="Fabric Width">
+            <input type="number" id="fabric_width" min="1" value="20" placeholder="Fabric Width">
         </div>
         <br>
         <div>
             <p>Rectangles Required:</p>
             <div id="form-div">
-                <input type="number" id="box_width0" min="1" value="8" placeholder="Width"><input type="number" id="box_height0" min="1" value="4" placeholder="Height">
+                <input type="number" id="box_width0" min="1" value="16" placeholder="Width"><input type="number" id="box_height0" min="1" value="8" placeholder="Height">
             </div>    
         </div>
         
