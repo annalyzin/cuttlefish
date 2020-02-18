@@ -94,10 +94,10 @@
 
         <div id="feedback">
             <p>
-                For more information on how this app works and its known limitations, visit <a href="https://github.com/cottonrays/cuttlefish#technical-notes">https://github.com/cottonrays/cuttlefish#technical-notes</a>.
+                For more information on how this app works and its known limitations, visit <a href="https://github.com/cottonrays/cuttlefish#technical-notes" target="_blank">https://github.com/cottonrays/cuttlefish#technical-notes</a>.
             </p>
             <p>
-                Got feedback? Let me know in this 3-question survey: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
+                Got feedback? Let me know in this 3-question survey: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
             </p>
         </div>
     </div>
@@ -183,7 +183,7 @@
 
     <div id="credits">
         <p>Built on top of Mapbox: Copyright &copy; 2018, Mapbox, ISC License.</p>
-        <p>Copyright &copy; 2020 to present, <a href="https://github.com/cottonrays/cuttlefish">Cottonrays.com</a></p>
+        <p>Copyright &copy; 2020 to present, <a href="https://github.com/cottonrays/cuttlefish" target="_blank">Cottonrays.com</a></p>
     </div>
 </body>
 </html>
