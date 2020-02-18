@@ -42,16 +42,16 @@
     <div id="container">
         <h1>Cuttlefish: Fabric Cut Optimizer</h1>
         <p>Cutting rectangles (or squares) of varying sizes from a piece of fabric?</p>
-        <p>This lightweight app provides a heuristic to optimize the use of your fabric, minimizing scraps and wastage.</p>
+        <p>This lightweight app provides a <i>heuristic</i> to optimize the use of your fabric, minimizing scraps and wastage.</p>
 
          <ul>
-          <li>Indicate the width of your fabric roll</li>
-          <li>Indicate the width and height of your rectangles required</li>
+          <li>Input the width of your fabric roll</li>
+          <li>Input the width and height of your rectangles required</li>
           <li>Use either inches or cm, just be consistent</li>
-          <li>You may use decimal places in your measurements</li>
+          <li>You may use decimal places in your inputs</li>
         </ul> 
 
-        <p>Note that rectangles will <b>not</b> be rotated to preserve how you'd like the pieces to be patterned along the fabric grain</p>
+        <p>Note that rectangles will <b>not</b> be rotated to preserve how you'd like the pieces to be patterned along the fabric grain.</p> 
 
         <p>
             <img class="img" src="./imgs/width_orientation.png" alt="Fabric Width Orientation">
@@ -91,10 +91,13 @@
             
         <canvas id="canvas"></canvas>
 
+
         <div id="feedback">
             <p>
-                Do you have suggestions on how I can improve your experience?<br>
-                Let me know in this 3-question survey: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
+                For more information on how this app works and its known limitations, visit <a href="https://github.com/cottonrays/cuttlefish#technical-notes">https://github.com/cottonrays/cuttlefish#technical-notes</a>.
+            </p>
+            <p>
+                Got feedback? Let me know in this 3-question survey: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
             </p>
         </div>
     </div>
@@ -135,13 +138,12 @@
 
             } 
 
-            const now = performance.now();
             const {w, h, fill} = potpack(boxes, fabric_width);
 
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
 
-            const cw = 580;
+            const cw = document.getElementById("container").clientWidth
             const ch = cw * h / w;
 
             canvas.width = cw * 2;
@@ -151,6 +153,7 @@
             ctx.scale(2, 2);
 
             const r = cw / w;
+
 
             ctx.lineWidth = 0.5;
             for (const box of boxes) {
@@ -180,7 +183,7 @@
 
     <div id="credits">
         <p>Built on top of Mapbox: Copyright &copy; 2018, Mapbox, ISC License.</p>
-        <p>Copyright &copy; 2020 to present, <a href="http://www.cottonrays.com">Cottonrays.com</a></p>
+        <p>Copyright &copy; 2020 to present, <a href="https://github.com/cottonrays/cuttlefish">Cottonrays.com</a></p>
     </div>
 </body>
 </html>
