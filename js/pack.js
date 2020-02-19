@@ -4,7 +4,7 @@ typeof define === 'function' && define.amd ? define(factory) :
 (global.potpack = factory());
 }(this, (function () { 'use strict';
 
-function potpack(boxes, fabric_width) {
+function potpack(boxes, fabric_width, fabric_height) {
 
     // calculate total box area and maximum box width
     var area = 0;
@@ -15,14 +15,19 @@ function potpack(boxes, fabric_width) {
     }
 
     // sort boxes in decreasing area and width
-    boxes.sort(function (x, y) { return y.a - x.a; });
     boxes.sort(function (x, y) { return y.w - x.w; });
+    boxes.sort(function (x, y) { return y.a - x.a; });
 
     // start with a single empty space, unbounded at the bottom
     var spaces = [{x: 0, y: 0, w: fabric_width, h: Infinity}];
 
     var width = fabric_width;
     var height = 0;
+
+    if (!isNaN(fabric_height)) {
+        height = fabric_height;
+        spaces = [{x: 0, y: 0, w: fabric_width, h: fabric_height}];
+    }
 
     for (var i$2 = 0, list$1 = boxes; i$2 < list$1.length; i$2 += 1) {
         
@@ -72,7 +77,7 @@ function potpack(boxes, fabric_width) {
             box$1.x = space.x;
             box$1.y = space.y;
 
-            height = Math.max(height, box$1.y + box$1.h);
+            if (isNaN(fabric_height)) { height = Math.max(height, box$1.y + box$1.h); }
 
             if (box$1.w === space.w && box$1.h === space.h) {
                 // space matches the box exactly; remove it
