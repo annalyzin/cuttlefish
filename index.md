@@ -26,7 +26,8 @@
             var w = document.createElement('input');
             var h = document.createElement('input');
             var q = document.createElement('input');
-            var e = document.createElement('p');
+            var e1 = document.createElement('span');
+            var e2 = document.createElement('p');
             w.setAttribute("type", "number");
             h.setAttribute("type", "number");
             q.setAttribute("type", "number");
@@ -45,16 +46,19 @@
             w.setAttribute("placeholder", "Width");
             h.setAttribute("placeholder", "Height");
             q.setAttribute("placeholder", "Qty");
-            e.setAttribute("class", "error_msg");
+            e1.setAttribute("class", "nospace_msg");
+            e2.setAttribute("class", "error_msg");
             increment();
             w.setAttribute("id", "box_width" + n_box);
             h.setAttribute("id", "box_height" + n_box);
             q.setAttribute("id", "box_count" + n_box);
-            e.setAttribute("id", "error_msg" + n_box);
+            e1.setAttribute("id", "nospace_msg" + n_box);
+            e2.setAttribute("id", "error_msg" + n_box);
             r.appendChild(w);
             r.appendChild(h);
             r.appendChild(q);
-            r.appendChild(e);
+            r.appendChild(e1);
+            r.appendChild(e2);
             document.getElementById("form-div").appendChild(r);
 
         }
@@ -111,6 +115,37 @@
             } 
 
             var {w, h, fill} = potpack(boxes, fabric_width, fabric_height);
+            var leftover_total = 0;
+            var leftover_total_area = 0;
+
+            // identify boxes that can't fit
+            for (j = 0; j < (n_box + 1); j++) {
+
+                var box_w = parseFloat(document.getElementById('box_width' + j).value);
+                var box_h = parseFloat(document.getElementById('box_height' + j).value);
+                var box_c = parseFloat(document.getElementById('box_count' + j).value);
+
+                var nospace_message = document.getElementById("nospace_msg" + j);
+                var leftover = 0;
+                var leftover_area = 0;
+
+                for (const box$1 of boxes) {
+                    if (isNaN(box$1.x) && box$1.w == box_w && box$1.h == box_h) {
+                        leftover += 1;
+                        leftover_area += box$1.a;
+                    }
+                }
+                if (leftover > 0) {
+                    nospace_message.innerHTML = `${leftover} out of ${box_c} excluded.`;
+                } else {
+                    nospace_message.innerHTML = ``;
+                }
+                
+                leftover_total += leftover;
+                leftover_total_area += leftover_area;
+
+            }
+
 
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
@@ -131,9 +166,9 @@
                 ctx.beginPath();
 
                 // color 
+                ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 70%)`;
                 ctx.rect(box.x * r, box.y * r, box.w * r, box.h * r);
-                // ctx.fill();
-                // ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                ctx.fill();
                 ctx.stroke();
 
                 // text label
@@ -143,9 +178,8 @@
                 ctx.fillText(box.w + "W x " + box.h + "H", (box.x+(0.5*box.w))*r, (box.y+(0.5*box.h))*r); 
 
             }
-
             document.getElementById('info').innerHTML = `
-            Packed <em>${boxes.length}</em> rectangle(s) in an area of <em>${w}x${h}</em> (WxH). Fabric utilization: <em>${(Math.round(10000 * fill) / 100)}%</em>.`;
+            Packed <em>${boxes.length - leftover_total}</em> out of <em>${boxes.length}</em> rectangle(s), using <em>${Math.round( (100 * (fill - leftover_total_area) ) / (w * h) )}%</em> of a <em>${w}x${h}</em> (WxH) fabric.`;
 
         }
 
@@ -190,7 +224,9 @@
             <input type="number" id="box_width0" min="1" value="16" placeholder="Width" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
             <input type="number" id="box_height0" min="1" value="8" placeholder="Height" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
             <input type="number" id="box_count0" min="1" value="1" placeholder="Qty" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+            <span class="nospace_msg" id="nospace_msg0"></span>
             <p class="error_msg" id="error_msg0"></p>
+            
         </div>    
     </div>
 
@@ -214,10 +250,10 @@
 
     <div id="feedback">
         <p>
-            For more information on how this app works and its known limitations, visit <a href="https://github.com/cottonrays/cuttlefish#technical-notes" target="_blank">https://github.com/cottonrays/cuttlefish#technical-notes</a>.
+            For how this app works and its known limitations, visit <a href="https://github.com/cottonrays/cuttlefish#technical-notes" target="_blank">https://github.com/cottonrays/cuttlefish#technical-notes</a>.
         </p>
         <p>
-            Got feedback? Let me know in this 3-question survey: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
+            Got feedback? Let me know here: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
         </p>
     </div>
 </div>
