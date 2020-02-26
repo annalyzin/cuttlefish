@@ -1,5 +1,7 @@
 # Cuttlefish: Fabric Cut Optimizer
 
+![alt text](https://github.com/cottonrays/cuttlefish/blob/master/imgs/intro.gif "Cuttlefish Explanation")
+
 Cutting rectangles (or squares) of varying sizes from a piece of fabric?
 
 This lightweight app provides a heuristic to optimize the use of your fabric, minimizing scraps and wastage.
