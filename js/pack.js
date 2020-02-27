@@ -16,9 +16,9 @@ function potpack(boxes, fabric_width, fabric_height) {
 
     // determine packing order of boxes
     boxes.sort(function (x, y) { return y.a - x.a; }); // fit bigger boxes first
-    boxes.sort(function (x, y) { return y.h - x.h; }); // keep boxes with similar heights side-by-side
     boxes.sort(function (x, y) { return y.w - x.w; }); // fit wider boxes first
-
+    boxes.sort(function (x, y) { return y.h - x.h; }); // keep boxes with similar heights side-by-side
+    
     // start with a single empty space, unbounded at the bottom
     var spaces = [{x: 0, y: 0, w: fabric_width, h: Infinity}];
 
