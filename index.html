@@ -203,7 +203,7 @@
     </script>
 
     <div id="container">
-        <h1>Cuttlefish: Fabric Cut Optimizer</h1>
+        <h1>Cuttlefish</h1> <h2>Fabric Cut Optimizer</h2>
         <p>Cutting rectangles (or squares) of varying sizes from a piece of fabric?</p>
         <p>This lightweight app helps you to optimize the use of your fabric, minimizing scraps and wastage.</p>
         <p><img class="img" src="./imgs/intro.gif"></p>
@@ -226,7 +226,7 @@
         <h3>Fabric</h3>
         <span>Width: </span><input type="number" id="fabric_width" min="1" value="20" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
         <span>Height: </span>
-        <input type="number" id="fabric_height" min="1" value="20" placeholder="Optional" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+        <input type="number" id="fabric_height" min="1" value="" placeholder="Optional" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
         <p class="error_msg" id="fabric_error_msg"></p>
     </div>
     <br>
