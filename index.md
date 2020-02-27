@@ -28,6 +28,9 @@
             var q = document.createElement('input');
             var e1 = document.createElement('span');
             var e2 = document.createElement('p');
+            var s1 = document.createElement('span');
+            var s2 = document.createElement('span');
+            var s3 = document.createElement('span');
             w.setAttribute("type", "number");
             h.setAttribute("type", "number");
             q.setAttribute("type", "number");
@@ -43,19 +46,25 @@
             w.setAttribute("oninput", "this.onchange();");
             h.setAttribute("oninput", "this.onchange();");
             q.setAttribute("oninput", "this.onchange();");
-            w.setAttribute("placeholder", "Width");
-            h.setAttribute("placeholder", "Height");
-            q.setAttribute("placeholder", "Qty");
+            // w.setAttribute("placeholder", "Width");
+            // h.setAttribute("placeholder", "Height");
+            // q.setAttribute("placeholder", "Qty");
             e1.setAttribute("class", "nospace_msg");
             e2.setAttribute("class", "error_msg");
+            s1.innerHTML = 'Width: ';
+            s2.innerHTML = ' Height: ';
+            s3.innerHTML = ' Qty: ';
             increment();
             w.setAttribute("id", "box_width" + n_box);
             h.setAttribute("id", "box_height" + n_box);
             q.setAttribute("id", "box_count" + n_box);
             e1.setAttribute("id", "nospace_msg" + n_box);
             e2.setAttribute("id", "error_msg" + n_box);
+            r.appendChild(s1);
             r.appendChild(w);
+            r.appendChild(s2);
             r.appendChild(h);
+            r.appendChild(s3);
             r.appendChild(q);
             r.appendChild(e1);
             r.appendChild(e2);
@@ -196,15 +205,17 @@
     <div id="container">
         <h1>Cuttlefish: Fabric Cut Optimizer</h1>
         <p>Cutting rectangles (or squares) of varying sizes from a piece of fabric?</p>
-        <p>This lightweight app provides a <i>heuristic</i> to optimize the use of your fabric, minimizing scraps and wastage.</p>
+        <p>This lightweight app helps you to optimize the use of your fabric, minimizing scraps and wastage.</p>
+        <p><img class="img" src="./imgs/intro.gif"></p>
 
-        <ul>
-          <li>Input the width of your fabric roll</li>
-          <li>Input the width and height of your rectangles</li>
-          <li>Use either inches or cm, just be consistent</li>
-          <li>You may use decimal places in your inputs</li>
-      </ul> 
+        <hr>
+        <h2>Try it!</h2>
 
+        <ol>
+            <li>Input your fabric's width. Fabric height is optional if you're still deciding how much fabric to buy.</li>
+          <li>Input the size and quantity of rectangles you wish to cut from the fabric.</li>
+          <li>Click 'Generate' to see possible ways the rectangles can be cut from the fabric.</li>
+      </ol> 
       <p>Note that rectangles will <b>not</b> be rotated to preserve how you'd like the pieces to be patterned along the fabric grain.</p> 
 
       <p>
@@ -213,17 +224,21 @@
 
     <div>
         <h3>Fabric</h3>
-        <input type="number" id="fabric_width" min="1" value="20" placeholder="Width" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
-        <input type="number" id="fabric_height" min="1" value="20" placeholder="Height" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+        <span>Width: </span><input type="number" id="fabric_width" min="1" value="20" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+        <span>Height: </span>
+        <input type="number" id="fabric_height" min="1" value="20" placeholder="Optional" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
         <p class="error_msg" id="fabric_error_msg"></p>
     </div>
     <br>
     <div>
         <h3>Rectangles to Cut</h3>
         <div id="form-div">
-            <input type="number" id="box_width0" min="1" value="16" placeholder="Width" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
-            <input type="number" id="box_height0" min="1" value="8" placeholder="Height" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
-            <input type="number" id="box_count0" min="1" value="1" placeholder="Qty" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+            <span>Width: </span>
+            <input type="number" id="box_width0" min="1" value="16" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+            <span>Height: </span>
+            <input type="number" id="box_height0" min="1" value="8" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+            <span>Qty: </span>
+            <input type="number" id="box_count0" min="1" value="1" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
             <span class="nospace_msg" id="nospace_msg0"></span>
             <p class="error_msg" id="error_msg0"></p>
             
