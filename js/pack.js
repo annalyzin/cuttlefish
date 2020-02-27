@@ -14,9 +14,10 @@ function potpack(boxes, fabric_width, fabric_height) {
         area += box.a;
     }
 
-    // sort boxes in decreasing area and height
-    boxes.sort(function (x, y) { return y.a - x.a; });
-    boxes.sort(function (x, y) { return y.h - x.h; });
+    // determine packing order of boxes
+    boxes.sort(function (x, y) { return y.a - x.a; }); // fit bigger boxes first
+    boxes.sort(function (x, y) { return y.h - x.h; }); // keep boxes with similar heights side-by-side
+    boxes.sort(function (x, y) { return y.w - x.w; }); // fit wider boxes first
 
     // start with a single empty space, unbounded at the bottom
     var spaces = [{x: 0, y: 0, w: fabric_width, h: Infinity}];
@@ -33,35 +34,68 @@ function potpack(boxes, fabric_width, fabric_height) {
         
         var box$1 = list$1[i$2];
 
-        // fuse vertically adjacent spaces like
-        // |-------------------|
-        // |     |             |
-        // |     |   space #1  |
-        // |     |_____________|
-        // |     |             |
-        // |     |   space #2  |
-        // |_____|_____________|
-        spaces.sort(function (a, b) { return a.x - b.x; });
-        for (var i$3 = 0; i$3 < spaces.length - 1; i$3 += 1) {
-            for (var i$4 = i$3 + 1; i$4 < spaces.length; i$4 += 1) {
+        // // fuse vertically adjacent spaces like
+        // // |-------------------|
+        // // |     |             |
+        // // |     |   space #1  |
+        // // |     |_____________|
+        // // |     |             |
+        // // |     |   space #2  |
+        // // |_____|_____________|
+        // spaces.sort(function (a, b) { return a.x - b.x; });
+        // for (var i$3 = 0; i$3 < spaces.length - 1; i$3 += 1) {
+        //     for (var i$4 = i$3 + 1; i$4 < spaces.length; i$4 += 1) {
                 
-                var space1 = spaces[i$3];
-                var space2 = spaces[i$4];
+        //         var space1 = spaces[i$3];
+        //         var space2 = spaces[i$4];
 
-                if (space1.x === space2.x) {
-                    space2.y = Math.min(space1.y, space2.y);
-                    space2.h = space1.h + space2.h;
+        //         if (space1.x === space2.x && space1.w === space2.w) {
+        //             space2.y = Math.min(space1.y, space2.y);
+        //             space2.h = space1.h + space2.h;
+        //             spaces.splice(i$3, 1);
+        //         }
+        //     }
+        // }
+
+        // fuse horizontally adjacent spaces like
+        // |-----------------------|
+        // |        |        |     |
+        // |        |        |     |
+        // | space1 | space2 |     |
+        // |        |        |     |
+        // |        |        |     |
+        // |________|________|_____|
+
+        spaces.sort(function (a, b) { return a.y - b.y; }); 
+        if (spaces.length > 1) {
+            for (var i$3 = spaces.length - 1; i$3 >=1; i$3--) {
+
+                var space1 = spaces[i$3];
+                var space2 = spaces[i$3 - 1];
+
+                if (space1.y === space2.y && space2.x === (space1.x + space1.w)) {
+
+                    console.log('space_pair start');
+                    console.log(space1);
+                    console.log(space2);
+
+                    space2.x = Math.min(space1.x, space2.x);
+                    space2.w = space1.w + space2.w;
                     spaces.splice(i$3, 1);
                 }
             }
         }
 
 
-        spaces.sort(function (a, b) { return a.y - b.y; });
+        
         // check for spaces nearer the cut edge first
+        spaces.sort(function (a, b) { return b.x - a.x; });
+        spaces.sort(function (a, b) { return a.y - b.y; });
         for (var i = 0; i < spaces.length; i += 1) {
-        // // check smaller spaces first    
+
+        // // check smaller spaces first
         // for (var i = spaces.length - 1; i >= 0; i--) {
+
             var space = spaces[i];
 
             // look for empty spaces that can accommodate the current box
@@ -104,21 +138,38 @@ function potpack(boxes, fabric_width, fabric_height) {
             } else {
 
 
+                // // otherwise the box splits the space into two spaces
+                // // |-------|-----------|
+                // // |  box  | new space |
+                // // |_______|___________|
+                // // | updated space     |
+                // // |___________________|
+                // spaces.push({
+                //     x: space.x + box$1.w,
+                //     y: space.y,
+                //     w: space.w - box$1.w,
+                //     h: box$1.h
+                // });
+                // space.y += box$1.h;
+                // space.h -= box$1.h;
+
+
                 // otherwise the box splits the space into two spaces
                 // |-------|-----------|
-                // |  box  | new space |
+                // |  box  |           |
+                // |_______| new space |
+                // |updated|           |
+                // | space |           |
                 // |_______|___________|
-                // | updated space     |
-                // |___________________|
                 spaces.push({
                     x: space.x + box$1.w,
                     y: space.y,
                     w: space.w - box$1.w,
-                    h: box$1.h
+                    h: space.h
                 });
                 space.y += box$1.h;
                 space.h -= box$1.h;
-
+                space.w = box$1.w;
 
             }
             break;
