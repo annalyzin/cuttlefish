@@ -34,6 +34,10 @@
             w.setAttribute("type", "number");
             h.setAttribute("type", "number");
             q.setAttribute("type", "number");
+            w.setAttribute("min", "1");
+            h.setAttribute("min", "1");
+            q.setAttribute("min", "1");
+            q.setAttribute("max", "100");
             w.setAttribute("onchange", "update();");
             h.setAttribute("onchange", "update();");
             q.setAttribute("onchange", "update();");
@@ -46,9 +50,6 @@
             w.setAttribute("oninput", "this.onchange();");
             h.setAttribute("oninput", "this.onchange();");
             q.setAttribute("oninput", "this.onchange();");
-            // w.setAttribute("placeholder", "Width");
-            // h.setAttribute("placeholder", "Height");
-            // q.setAttribute("placeholder", "Qty");
             e1.setAttribute("class", "nospace_msg");
             e2.setAttribute("class", "error_msg");
             s1.innerHTML = 'Width: ';
@@ -69,7 +70,6 @@
             r.appendChild(e1);
             r.appendChild(e2);
             document.getElementById("form-div").appendChild(r);
-
         }
 
 
@@ -106,6 +106,7 @@
                     if(box_w < 1 || box_h < 1 || box_c < 1) throw "Minimum value is 1.";
                     if(box_w > fabric_width) throw "Width exceeds fabric width.";
                     if(!Number.isInteger(box_c)) throw "Number of rectangles must be a whole number.";
+                    if(box_c > 100) throw "Number of rectangles cannot exceed 100";
 
                     error_message.innerHTML = ``;
 
@@ -238,7 +239,7 @@
             <span>Height: </span>
             <input type="number" id="box_height0" min="1" value="8" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
             <span>Qty: </span>
-            <input type="number" id="box_count0" min="1" value="1" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+            <input type="number" id="box_count0" min="1" max="100" value="1" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
             <span class="nospace_msg" id="nospace_msg0"></span>
             <p class="error_msg" id="error_msg0"></p>
             
