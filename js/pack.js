@@ -75,10 +75,6 @@ function potpack(boxes, fabric_width, fabric_height) {
 
                 if (space1.y === space2.y && space2.x === (space1.x + space1.w)) {
 
-                    console.log('space_pair start');
-                    console.log(space1);
-                    console.log(space2);
-
                     space2.x = Math.min(space1.x, space2.x);
                     space2.w = space1.w + space2.w;
                     spaces.splice(i$3, 1);

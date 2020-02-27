@@ -34,6 +34,10 @@
             w.setAttribute("type", "number");
             h.setAttribute("type", "number");
             q.setAttribute("type", "number");
+            w.setAttribute("min", "1");
+            h.setAttribute("min", "1");
+            q.setAttribute("min", "1");
+            q.setAttribute("max", "100");
             w.setAttribute("onchange", "update();");
             h.setAttribute("onchange", "update();");
             q.setAttribute("onchange", "update();");
@@ -46,9 +50,6 @@
             w.setAttribute("oninput", "this.onchange();");
             h.setAttribute("oninput", "this.onchange();");
             q.setAttribute("oninput", "this.onchange();");
-            // w.setAttribute("placeholder", "Width");
-            // h.setAttribute("placeholder", "Height");
-            // q.setAttribute("placeholder", "Qty");
             e1.setAttribute("class", "nospace_msg");
             e2.setAttribute("class", "error_msg");
             s1.innerHTML = 'Width: ';
@@ -69,7 +70,6 @@
             r.appendChild(e1);
             r.appendChild(e2);
             document.getElementById("form-div").appendChild(r);
-
         }
 
 
@@ -90,6 +90,12 @@
                     fabric_error_message.innerHTML = err;
                 }
 
+            // color boxes by size
+            const col_start = 35;
+            const col_end = 90;
+            const col_interval = Math.round((80-20)/n_box);
+
+
             let boxes = [];
             var i;
             for (i = 0; i < (n_box + 1); i++) {
@@ -106,14 +112,21 @@
                     if(box_w < 1 || box_h < 1 || box_c < 1) throw "Minimum value is 1.";
                     if(box_w > fabric_width) throw "Width exceeds fabric width.";
                     if(!Number.isInteger(box_c)) throw "Number of rectangles must be a whole number.";
+                    if(box_c > 100) throw "Number of rectangles cannot exceed 100";
 
                     error_message.innerHTML = ``;
 
                     // calculcate area and add to list of valid boxes
                     var box_a = box_w * box_h;
                     var bc;
+                    console.log(Number(i)*col_interval);
                     for(bc = 0; bc < box_c; bc += 1) {
-                        boxes.push({w: box_w, h: box_h, a: box_a});
+                        if (i == 0) {
+                            boxes.push({w: box_w, h: box_h, a: box_a, col: `hsl(195,100%,${col_start}%)`});
+                        } else {
+                            boxes.push({w: box_w, h: box_h, a: box_a, col: `hsl(195,100%,${i*col_interval + col_start}%)`});
+                        }
+                        
                     }
                     
                 }
@@ -175,7 +188,8 @@
                 ctx.beginPath();
 
                 // color 
-                ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                ctx.fillStyle = box.col;
+                console.log(box.col);
                 ctx.rect(box.x * r, box.y * r, box.w * r, box.h * r);
                 ctx.fill();
                 ctx.stroke();
@@ -238,7 +252,7 @@
             <span>Height: </span>
             <input type="number" id="box_height0" min="1" value="8" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
             <span>Qty: </span>
-            <input type="number" id="box_count0" min="1" value="1" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+            <input type="number" id="box_count0" min="1" max="100" value="1" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
             <span class="nospace_msg" id="nospace_msg0"></span>
             <p class="error_msg" id="error_msg0"></p>
             
