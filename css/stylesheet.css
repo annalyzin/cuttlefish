@@ -1,6 +1,6 @@
 body { 
     margin: 0; 
-    font: 16px/1.2 "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif; 
     display: flex; 
     flex-direction: column; 
     align-items: center; 
@@ -24,7 +24,7 @@ hr {
     margin-bottom: 50px;
 }
 input[type=number] {
-    width: 20%;
+    width: 15%;
     font-size: 15px;
     padding: 8px 10px;
     margin: 2px 2px;
@@ -33,6 +33,26 @@ input[type=number] {
     border: 1px solid #0099cc;
     border-radius: 5px;
 
+}
+#fabric_width {
+    width: 25%;
+    font-size: 15px;
+    padding: 8px 10px;
+    margin: 2px 2px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #0099cc;
+    border-radius: 5px;
+}
+#fabric_height {
+    width: 25%;
+    font-size: 15px;
+    padding: 8px 10px;
+    margin: 2px 2px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #0099cc;
+    border-radius: 5px;
 }
 input[type=number]:focus {
     background-color: #ccf3ff;
@@ -90,10 +110,10 @@ input[type=number]:focus {
 }
 #container { 
     max-width: 580px; 
-    width: 90%;
+    width: 80%;
     padding: 25px 7px;
+    font-size: 15px;
 }
-
 #feedback { 
     font-size: 15px;
     padding: 50px 7px;
