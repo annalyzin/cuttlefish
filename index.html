@@ -52,8 +52,8 @@
             q.setAttribute("oninput", "this.onchange();");
             e1.setAttribute("class", "nospace_msg");
             e2.setAttribute("class", "error_msg");
-            s1.innerHTML = 'Width: ';
-            s2.innerHTML = ' Height: ';
+            s1.innerHTML = 'W: ';
+            s2.innerHTML = ' H: ';
             s3.innerHTML = ' Qty: ';
             increment();
             w.setAttribute("id", "box_width" + n_box);
