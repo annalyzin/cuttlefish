@@ -250,7 +250,7 @@
         <p>Note that rectangles will <b>not</b> be rotated to preserve how you'd like the pieces to be patterned along the fabric grain.</p> 
 
         <p>
-            <img class="img" src="./imgs/width_orientation.png" alt="Fabric Width Orientation">
+            <img class="img_input" src="./imgs/width_orientation.png" alt="Fabric Width Orientation">
         </p>
 
         <div>

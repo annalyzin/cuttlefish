@@ -24,28 +24,7 @@ hr {
     margin-bottom: 50px;
 }
 input[type=number] {
-    width: 15%;
-    font-size: 15px;
-    padding: 8px 10px;
-    margin: 2px 2px;
-    background-color: #fff;
-    box-sizing: border-box;
-    border: 1px solid #0099cc;
-    border-radius: 5px;
-
-}
-#fabric_width {
-    width: 25%;
-    font-size: 15px;
-    padding: 8px 10px;
-    margin: 2px 2px;
-    background-color: #fff;
-    box-sizing: border-box;
-    border: 1px solid #0099cc;
-    border-radius: 5px;
-}
-#fabric_height {
-    width: 25%;
+    width: 20%;
     font-size: 15px;
     padding: 8px 10px;
     margin: 2px 2px;
@@ -63,6 +42,15 @@ input[type=number]:focus {
     margin-right: auto;
     max-width: 85%;
     max-height: 85%;
+}
+.img_input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 85%;
+    max-height: 85%;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 .error_msg{
     color: #ff0000;
@@ -113,6 +101,26 @@ input[type=number]:focus {
     width: 80%;
     padding: 25px 7px;
     font-size: 15px;
+}
+#fabric_width {
+    width: 30%;
+    font-size: 15px;
+    padding: 8px 10px;
+    margin: 2px 2px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #0099cc;
+    border-radius: 5px;
+}
+#fabric_height {
+    width: 30%;
+    font-size: 15px;
+    padding: 8px 10px;
+    margin: 2px 2px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #0099cc;
+    border-radius: 5px;
 }
 #feedback { 
     font-size: 15px;
