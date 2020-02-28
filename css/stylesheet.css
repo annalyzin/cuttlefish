@@ -20,6 +20,9 @@ h3 {
 p { 
     margin-bottom: 10px;
 }
+hr { 
+    margin-bottom: 50px;
+}
 input[type=number] {
     width: 20%;
     font-size: 15px;
@@ -88,6 +91,7 @@ input[type=number]:focus {
 #container { 
     max-width: 580px; 
     width: 90%;
+    padding: 25px 7px;
 }
 
 #feedback { 

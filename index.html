@@ -26,7 +26,7 @@
             var w = document.createElement('input');
             var h = document.createElement('input');
             var q = document.createElement('input');
-            var e1 = document.createElement('span');
+            var e1 = document.createElement('p');
             var e2 = document.createElement('p');
             var s1 = document.createElement('span');
             var s2 = document.createElement('span');
@@ -72,6 +72,24 @@
             document.getElementById("form-div").appendChild(r);
         }
 
+        function indexOfMax(arr) {
+            if (arr.length === 0) {
+                return -1;
+            }
+
+            var max = arr[0];
+            var maxIndex = 0;
+
+            for (var i = 1; i < arr.length; i++) {
+                if (arr[i] > max) {
+                    maxIndex = i;
+                    max = arr[i];
+                }
+            }
+
+            return maxIndex;
+        }
+
 
         function update() {
 
@@ -84,11 +102,11 @@
                 if(fabric_width < 1 || fabric_height < 1) throw "Minimum value is 1.";
 
                 fabric_error_message.innerHTML = ``;
-                    
-                }
-                catch(err) {
-                    fabric_error_message.innerHTML = err;
-                }
+
+            }
+            catch(err) {
+                fabric_error_message.innerHTML = err;
+            }
 
             // color boxes by size
             const col_start = 35;
@@ -119,7 +137,6 @@
                     // calculcate area and add to list of valid boxes
                     var box_a = box_w * box_h;
                     var bc;
-                    console.log(Number(i)*col_interval);
                     for(bc = 0; bc < box_c; bc += 1) {
                         if (i == 0) {
                             boxes.push({w: box_w, h: box_h, a: box_a, col: `hsl(195,100%,${col_start}%)`});
@@ -136,7 +153,8 @@
 
             } 
 
-            var {w, h, fill} = potpack(boxes, fabric_width, fabric_height);
+            var {w, h, fill} = potpack(boxes, fabric_width, fabric_height, hspace=1, vspace=0, hfuse=0, vfuse=1);
+
             var leftover_total = 0;
             var leftover_total_area = 0;
 
@@ -189,7 +207,6 @@
 
                 // color 
                 ctx.fillStyle = box.col;
-                console.log(box.col);
                 ctx.rect(box.x * r, box.y * r, box.w * r, box.h * r);
                 ctx.fill();
                 ctx.stroke();
@@ -223,77 +240,81 @@
         <p><img class="img" src="./imgs/intro.gif"></p>
 
         <hr>
-        <h2>Try it!</h2>
+        <h2>Try it !</h2>
 
         <ol>
             <li>Input your fabric's width. Fabric height is optional if you're still deciding how much fabric to buy.</li>
-          <li>Input the size and quantity of rectangles you wish to cut from the fabric.</li>
-          <li>Click 'Generate' to see possible ways the rectangles can be cut from the fabric.</li>
-      </ol> 
-      <p>Note that rectangles will <b>not</b> be rotated to preserve how you'd like the pieces to be patterned along the fabric grain.</p> 
+            <li>Input the size and quantity of rectangles you wish to cut from the fabric.</li>
+            <li>Click 'Generate' to see how the rectangles can be cut from the fabric.</li>
+        </ol> 
+        <p>Note that rectangles will <b>not</b> be rotated to preserve how you'd like the pieces to be patterned along the fabric grain.</p> 
 
-      <p>
-        <img class="img" src="./imgs/width_orientation.png" alt="Fabric Width Orientation">
-    </p>
+        <p>
+            <img class="img" src="./imgs/width_orientation.png" alt="Fabric Width Orientation">
+        </p>
 
-    <div>
-        <h3>Fabric</h3>
-        <span>Width: </span><input type="number" id="fabric_width" min="1" value="20" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
-        <span>Height: </span>
-        <input type="number" id="fabric_height" min="1" value="" placeholder="Optional" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
-        <p class="error_msg" id="fabric_error_msg"></p>
-    </div>
-    <br>
-    <div>
-        <h3>Rectangles to Cut</h3>
-        <div id="form-div">
-            <span>Width: </span>
-            <input type="number" id="box_width0" min="1" value="16" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+        <div>
+            <h3>Fabric</h3>
+            <span>Width: </span><input type="number" id="fabric_width" min="1" value="20" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
             <span>Height: </span>
-            <input type="number" id="box_height0" min="1" value="8" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
-            <span>Qty: </span>
-            <input type="number" id="box_count0" min="1" max="100" value="1" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
-            <span class="nospace_msg" id="nospace_msg0"></span>
-            <p class="error_msg" id="error_msg0"></p>
-            
-        </div>    
+            <input type="number" id="fabric_height" min="1" value="" placeholder="Optional" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+            <p class="error_msg" id="fabric_error_msg"></p>
+        </div>
+        <br>
+        <div>
+            <h3>Rectangles to Cut</h3>
+            <div id="form-div">
+                <span>Width: </span>
+                <input type="number" id="box_width0" min="1" value="16" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+                <span>Height: </span>
+                <input type="number" id="box_height0" min="1" value="8" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+                <span>Qty: </span>
+                <input type="number" id="box_count0" min="1" max="100" value="1" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+                <p class="nospace_msg" id="nospace_msg0"></p>
+                <p class="error_msg" id="error_msg0"></p>
+
+            </div>    
+        </div>
+
+
+        <div>
+            <button class="add-button" onclick="addField()">Add More</button>
+        </div>
+
+        <div id="gen-button-div">
+            <p>
+                <button class="gen-button" id="gen-button">Generate</button>
+            </p>
+        </div>
+
+        <div>
+            <p id="info"></p>
+        </div>
+
+        <canvas id="canvas"></canvas>
+        <p></p>
+
+        <div id="feedback">
+            <hr>
+            <h2>How does it work?</h2>
+            <p>
+                Finding the optimal way to cut rectangles from a piece of fabric is part of a general class of puzzles called the <i>2D bin packing problem</i> (or, if you've unlimited fabric height, a <i>strip packing problem</i>).</p>
+            <p>
+                Cuttlefish packs your rectangles in the order of decresing height, weight, and then area. Hence, it works best when your rectangles have similar heights. This is simply a shortcut to solve the problem, which is by no means optimal, but hopefully provides a decent solution for you to improve upon. 
+            </p>
+            <p>
+                For more info: <a href="https://github.com/cottonrays/cuttlefish#technical-notes" target="_blank">https://github.com/cottonrays/cuttlefish#technical-notes</a>.
+            </p>
+            <p>
+                Leave feedback here: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
+            </p>
+        </div>
     </div>
 
 
-    <div>
-        <button class="add-button" onclick="addField()">Add More</button>
+    <div id="credits">
+        <p>Built on top of Mapbox: Copyright &copy; 2018, Mapbox, ISC License.</p>
+        <p>Copyright &copy; 2020 to present, <a href="https://github.com/cottonrays/cuttlefish" target="_blank">Cottonrays.com</a></p>
     </div>
-
-    <div id="gen-button-div">
-        <p>
-            <button class="gen-button" id="gen-button">Generate</button>
-        </p>
-    </div>
-
-    <div>
-        <p id="info"></p>
-    </div>
-
-    <canvas id="canvas"></canvas>
-
-
-    <div id="feedback">
-        <p>
-            For how this app works and its known limitations, visit <a href="https://github.com/cottonrays/cuttlefish#technical-notes" target="_blank">https://github.com/cottonrays/cuttlefish#technical-notes</a>.
-        </p>
-        <p>
-            Got feedback? Let me know here: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
-        </p>
-    </div>
-</div>
-
-
-
-
-
-<div id="credits">
-    <p>Built on top of Mapbox: Copyright &copy; 2018, Mapbox, ISC License.</p>
-    <p>Copyright &copy; 2020 to present, <a href="https://github.com/cottonrays/cuttlefish" target="_blank">Cottonrays.com</a></p>
-</div>
 </body>
 </html>

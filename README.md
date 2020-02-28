@@ -1,17 +1,8 @@
-# Cuttlefish: Fabric Cut Optimizer
-
 ![alt text](https://github.com/cottonrays/cuttlefish/blob/master/imgs/intro.gif "Cuttlefish Explanation")
 
 Cutting rectangles (or squares) of varying sizes from a piece of fabric?
 
-This lightweight app provides a heuristic to optimize the use of your fabric, minimizing scraps and wastage.
-
-- Indicate the width of your fabric roll
-- Indicate the width and height of your rectangles required
-- Use either inches or cm, just be consistent
-- You may use decimal places in your measurements
-
-Note that rectangles will **not** be rotated to preserve how you'd like the pieces to be patterned along the fabric grain
+This lightweight app helps you to optimize the use of your fabric, minimizing scraps and wastage.
 
 # Demo
 
@@ -19,22 +10,22 @@ Use the Cuttlefish app here: <a href="https://cottonrays.github.io/cuttlefish" t
 
 # Feedback
 
-Do you have suggestions on how I can improve your experience?
-
-Complete this 3-question survey: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
+Do you have suggestions on how I can improve your experience? 
+Leave your feedback here: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
 
 # Technical Notes
 
-Cuttlefish was built on top of Mapbox (Copyright 2018, ISC License), which uses a heuristic for the 2D bin packing problem. It packs rectangles from largest to smallest, and fills up smaller spaces in the upper left hand corners first.
+Finding the optimal way to cut rectangles from a piece of fabric is part of a general class of puzzles called the 2D bin packing problem (or, if you've unlimited fabric height, a strip packing problem). Read more about the different solution algorithms here: <a href="https://cgi.csc.liv.ac.uk/~epa/surveyhtml.html" target="_blank">https://cgi.csc.liv.ac.uk/~epa/surveyhtml.html</a>
 
-Cuttlefish features the additional enhancements listed below.
+Cuttlefish packs your rectangles in the order of decresing height, weight, and then area. Hence, it works best when your rectangles have similar heights. This is simply a shortcut to solve the problem, which is by no means optimal, but hopefully provides a decent solution for you to visualize your project and improve upon. 
+
+Cuttlefish was built on top of Mapbox (Copyright 2018, ISC License), which uses a heuristic for the 2D bin packing problem. Cuttlefish features the following enhancements:
 
 - Constraint of overall fabric width added
-- Customized dimensions of rectangles enabled
+- Customized dimensions and quantity of rectangles enabled
 - Optimized for use on mobile phones
-- Positions rectangles closer to the cut edge to minimize resulting scraps
 - Input validation and error catching for non-numerical and zero/negative numbers
-- Fuses spaces which are perfectly adjacent in the vertical axis for more optimal packing
+- Fuses spaces which are perfectly adjacent in the vertical and horizontal axis for more optimal packing
 ```
 |-------------------|           |-------------------|
 |     |             |           |     |             |
@@ -48,9 +39,18 @@ Cuttlefish features the additional enhancements listed below.
 
 # Limitations
 
-Cuttlefish attempts to solve a combinatorial NP-hard problem, known as the <a href="https://en.wikipedia.org/wiki/Bin_packing_problem" target="_blank">Bin Packing</a> problem. Since Cuttlefish only uses a heuristic (i.e. approximation), there is a chance that the solution generated is not the most optimal. However, Culttlefish aims to provide you with an initial guide to visualize your fabric utilization, and hopefully inspire you to arrive at a more optimal solution than anything you'd have thought of while panicking over your sewing project deadlines.
+Below is a list of known limitations. If you come across any additional ones, feel free to raise an issue or fill in this form: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>.
 
-Below is a list of known limitations. If you come across any additional ones, feel free to submit a pull request or fill in this form: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>.
+- Tendency to leave empty spaces in between rows, especially if there's great variation in rectangles' heights.
+- If you can afford to rotate your rectangles, you need to test the rotated dimensions manually.
+- I'm new to JavaScript and my script is heinous. Any advice on organizing the code (e.g. variable scoping) would be much appreciated.
 
-- Unlimited fabric height assumed
-- Tendency to fill upper left hand corners first might result in rectangles lining the left side of the fabric
+# Credits
+
+Cuttlefish was built on top of Mapbox (Copyright 2018, ISC License). I also thank both the willing and unwitting people who helped me to test the app:
+
+- Adele Huang
+- Chin Weicheng
+- Joel Alexander Ng
+- Kenneth Soo
+- Yap Bee Ting

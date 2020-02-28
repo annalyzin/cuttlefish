@@ -4,7 +4,7 @@ typeof define === 'function' && define.amd ? define(factory) :
 (global.potpack = factory());
 }(this, (function () { 'use strict';
 
-function potpack(boxes, fabric_width, fabric_height) {
+function potpack(boxes, fabric_width, fabric_height, hspace, vspace, hfuse, vfuse) {
 
     // calculate total box area and maximum box width
     var area = 0;
@@ -34,56 +34,64 @@ function potpack(boxes, fabric_width, fabric_height) {
         
         var box$1 = list$1[i$2];
 
-        // // fuse vertically adjacent spaces like
-        // // |-------------------|
-        // // |     |             |
-        // // |     |   space #1  |
-        // // |     |_____________|
-        // // |     |             |
-        // // |     |   space #2  |
-        // // |_____|_____________|
-        // spaces.sort(function (a, b) { return a.x - b.x; });
-        // for (var i$3 = 0; i$3 < spaces.length - 1; i$3 += 1) {
-        //     for (var i$4 = i$3 + 1; i$4 < spaces.length; i$4 += 1) {
-                
-        //         var space1 = spaces[i$3];
-        //         var space2 = spaces[i$4];
 
-        //         if (space1.x === space2.x && space1.w === space2.w) {
-        //             space2.y = Math.min(space1.y, space2.y);
-        //             space2.h = space1.h + space2.h;
-        //             spaces.splice(i$3, 1);
-        //         }
-        //     }
-        // }
+        if (vfuse === 1) {
 
-        // fuse horizontally adjacent spaces like
-        // |-----------------------|
-        // |        |        |     |
-        // |        |        |     |
-        // | space1 | space2 |     |
-        // |        |        |     |
-        // |        |        |     |
-        // |________|________|_____|
+            // fuse vertically adjacent spaces like
+            // |-------------------|
+            // |     |             |
+            // |     |   space #1  |
+            // |     |_____________|
+            // |     |             |
+            // |     |   space #2  |
+            // |_____|_____________|
+            spaces.sort(function (a, b) { return a.x - b.x; });
+            for (var i$3 = 0; i$3 < spaces.length - 1; i$3 += 1) {
+                for (var i$4 = i$3 + 1; i$4 < spaces.length; i$4 += 1) {
+                    
+                    var space1 = spaces[i$3];
+                    var space2 = spaces[i$4];
 
-        spaces.sort(function (a, b) { return a.y - b.y; }); 
-        if (spaces.length > 1) {
-            for (var i$3 = spaces.length - 1; i$3 >=1; i$3--) {
+                    if (space1.x === space2.x && space2.y === (space1.y + space1.h)) {
+                        space2.y = Math.min(space1.y, space2.y);
+                        space2.h = space1.h + space2.h;
+                        spaces.splice(i$3, 1);
+                    }
+                }
+            }
 
-                var space1 = spaces[i$3];
-                var space2 = spaces[i$3 - 1];
+        }
 
-                if (space1.y === space2.y && space2.x === (space1.x + space1.w)) {
 
-                    space2.x = Math.min(space1.x, space2.x);
-                    space2.w = space1.w + space2.w;
-                    spaces.splice(i$3, 1);
+        if (hfuse === 1) {
+
+            // fuse horizontally adjacent spaces like
+            // |-----------------------|
+            // |        |        |     |
+            // |        |        |     |
+            // | space1 | space2 |     |
+            // |        |        |     |
+            // |        |        |     |
+            // |________|________|_____|
+
+            spaces.sort(function (a, b) { return a.y - b.y; }); 
+            if (spaces.length > 1) {
+                for (var i$3 = spaces.length - 1; i$3 >=1; i$3--) {
+
+                    var space1 = spaces[i$3];
+                    var space2 = spaces[i$3 - 1];
+
+                    if (space1.y === space2.y && space2.x === (space1.x + space1.w)) {
+
+                        space2.x = Math.min(space1.x, space2.x);
+                        space2.w = space1.w + space2.w;
+                        spaces.splice(i$3, 1);
+                    }
                 }
             }
         }
 
 
-        
         // check for spaces nearer the cut edge first
         spaces.sort(function (a, b) { return b.x - a.x; });
         spaces.sort(function (a, b) { return a.y - b.y; });
@@ -133,22 +141,26 @@ function potpack(boxes, fabric_width, fabric_height) {
 
             } else {
 
+                if (hspace === 1) {
 
-                // // otherwise the box splits the space into two spaces
-                // // |-------|-----------|
-                // // |  box  | new space |
-                // // |_______|___________|
-                // // | updated space     |
-                // // |___________________|
-                // spaces.push({
-                //     x: space.x + box$1.w,
-                //     y: space.y,
-                //     w: space.w - box$1.w,
-                //     h: box$1.h
-                // });
-                // space.y += box$1.h;
-                // space.h -= box$1.h;
+                    // otherwise the box splits the space into two spaces
+                    // |-------|-----------|
+                    // |  box  | new space |
+                    // |_______|___________|
+                    // | updated space     |
+                    // |___________________|
+                    spaces.push({
+                        x: space.x + box$1.w,
+                        y: space.y,
+                        w: space.w - box$1.w,
+                        h: box$1.h
+                    });
+                    space.y += box$1.h;
+                    space.h -= box$1.h;
 
+                }
+
+                if (vspace === 1) {
 
                 // otherwise the box splits the space into two spaces
                 // |-------|-----------|
@@ -166,6 +178,10 @@ function potpack(boxes, fabric_width, fabric_height) {
                 space.y += box$1.h;
                 space.h -= box$1.h;
                 space.w = box$1.w;
+
+                }
+
+
 
             }
             break;
