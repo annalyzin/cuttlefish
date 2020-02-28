@@ -234,9 +234,9 @@
     </script>
 
     <div id="container">
-        <h1>Cuttlefish</h1> <h2>Fabric Cut Optimizer</h2>
+        <h1>Cuttlefish</h1> <h2>Fabric Cut Maximizer</h2>
         <p>Cutting rectangles (or squares) of varying sizes from a piece of fabric?</p>
-        <p>This lightweight app helps you to optimize the use of your fabric, minimizing scraps and wastage.</p>
+        <p>This lightweight app helps you to maximize the use of your fabric, while minimizing scraps and wastage.</p>
         <p><img class="img" src="./imgs/intro.gif"></p>
 
         <hr>

@@ -2,7 +2,7 @@
 
 Cutting rectangles (or squares) of varying sizes from a piece of fabric?
 
-This lightweight app helps you to optimize the use of your fabric, minimizing scraps and wastage.
+This lightweight app helps you to maximize the use of your fabric, while minimizing scraps and wastage.
 
 # Demo
 
