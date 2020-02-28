@@ -255,8 +255,8 @@
 
         <div>
             <h3>Fabric</h3>
-            <span>Width: </span><input type="number" id="fabric_width" min="1" value="20" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
-            <span>Height: </span>
+            <span>W: </span><input type="number" id="fabric_width" min="1" value="20" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+            <span>H: </span>
             <input type="number" id="fabric_height" min="1" value="" placeholder="Optional" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
             <p class="error_msg" id="fabric_error_msg"></p>
         </div>
@@ -264,9 +264,9 @@
         <div>
             <h3>Rectangles to Cut</h3>
             <div id="form-div">
-                <span>Width: </span>
+                <span>W: </span>
                 <input type="number" id="box_width0" min="1" value="16" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
-                <span>Height: </span>
+                <span>H: </span>
                 <input type="number" id="box_height0" min="1" value="8" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
                 <span>Qty: </span>
                 <input type="number" id="box_count0" min="1" max="100" value="1" onchange="update();" onkeyup="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
