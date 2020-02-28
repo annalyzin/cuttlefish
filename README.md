@@ -23,6 +23,7 @@ Cuttlefish was built on top of Mapbox (Copyright 2018, ISC License), which uses 
 
 - Constraint of overall fabric width added
 - Customized dimensions and quantity of rectangles enabled
+- Color-coded rectangles by their dimensions
 - Optimized for use on mobile phones
 - Input validation and error catching for non-numerical and zero/negative numbers
 - Fuses spaces which are perfectly adjacent in the vertical and horizontal axis for more optimal packing
@@ -42,6 +43,7 @@ Cuttlefish was built on top of Mapbox (Copyright 2018, ISC License), which uses 
 Below is a list of known limitations. If you come across any additional ones, feel free to raise an issue or fill in this form: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>.
 
 - Tendency to leave empty spaces in between rows, especially if there's great variation in rectangles' heights.
+- Handles rectangles and squares only.
 - If you can afford to rotate your rectangles, you need to test the rotated dimensions manually.
 - I'm new to JavaScript and my script is heinous. Any advice on organizing the code (e.g. variable scoping) would be much appreciated.
 
