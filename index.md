@@ -314,7 +314,7 @@
 
     <div id="credits">
         <p>Built on top of Mapbox: Copyright &copy; 2018, Mapbox, ISC License.</p>
-        <p>Copyright &copy; 2020 to present, <a href="https://github.com/cottonrays/cuttlefish" target="_blank">Cottonrays.com</a></p>
+        <p>Copyright &copy; 2020 to present, <a href="https://cottonrays.com" target="_blank">Cottonrays.com</a></p>
     </div>
 </body>
 </html>
