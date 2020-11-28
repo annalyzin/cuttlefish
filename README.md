@@ -8,11 +8,6 @@ This lightweight app helps you to maximize the use of your fabric, while minimiz
 
 Use the Cuttlefish app here: <a href="https://cottonrays.github.io/cuttlefish" target="_blank">https://cottonrays.github.io/cuttlefish</a>
 
-# Feedback
-
-Do you have suggestions on how I can improve your experience? 
-Leave your feedback here: <a href="https://forms.gle/MSXG9oHt3z6gwaMh9" target="_blank">https://forms.gle/MSXG9oHt3z6gwaMh9</a>
-
 # Technical Notes
 
 Finding the optimal way to cut rectangles from a piece of fabric is part of a general class of puzzles called the 2D bin packing problem (or, if you've unlimited fabric height, a strip packing problem). Read more about the different solution algorithms here: <a href="https://cgi.csc.liv.ac.uk/~epa/surveyhtml.html" target="_blank">https://cgi.csc.liv.ac.uk/~epa/surveyhtml.html</a>
